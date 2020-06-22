@@ -26,12 +26,12 @@ router.post("/",(req, res, next)=>{
     .catch(e=> next(e))
 });
 
-// //update a contact
-// router.put("/",(req, res, next)=>{
-//     ContactController.update(req.body)
-//     .then(d=> res.json(d))
-//     .catch(e=> next(e))
-// });
+//update a contact
+router.put("/:id",(req, res, next)=>{
+    ContactController.update(req.params.id, req.body)
+    .then(d=> res.json(d))
+    .catch(e=> next(e))
+});
 
 //delete a contact
 router.delete("/:id",(req, res, next)=>{

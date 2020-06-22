@@ -7,15 +7,16 @@ create(payload){
 }
 //read all the contacts
 list(){
+    //TODO PAGINATION HANDLING (DATATABLES)
     return ContactModel.find({});
 }
 //read specific contact
-getById(id){
-    return ContactModel.findOne({_id: id});
+async getById(id){
+    return await ContactModel.findOne({_id: id});
 }
 //Update
 update(id, payload){
-    return ContactModel.findOneAndUpdate({_id: id}, payload);
+    return ContactModel.updateOne({_id: id}, {$set: {full_name: payload.full_name, email: payload.email, subject: payload.subject, message: payload.message}});
 }
 remove(id){
     return ContactModel.deleteOne({_id: id});

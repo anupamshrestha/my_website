@@ -1,0 +1,81 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.0.1">
+    <title><%=title%></title>
+    <!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+
+<div class="container-fluid">
+  <div class="row">
+      <div class="container">
+          <div class="row">
+            <div class="col-md-10 text-center"><h2><%=title%></h2></div>    
+
+            <div class=" col-md-2 text-right">
+              <button type="button" class="btn btn-secondary" title="Add Contact">
+                <a href="./contacts/add" target="_blank"> <i class="fa fa-plus"  title="Add Contact">&nbsp; Add </i></a>
+                 <!-- <i class="fa fa-plus"  title="Add Contact">&nbsp; Add </i> -->
+              </button>
+            </div>
+          </div>
+       </div>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Subject</th>
+              <th>Message</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if(contactList.length>0){contactList.forEach(contact=>{%>
+
+            
+            <tr>
+              <td><%=contact.full_name%></td>
+              <td><%=contact.email%></td>
+              <td><%=contact.subject%></td>
+              <td><%=contact.message%></td>
+              <td><button type="button" class="btn btn-primary" title="View Contact"><a href="./contacts/update" target="_blank"><i class="fa fa-eye"  title="View Contact"></i></a></button>
+              
+                <button type="button" class="btn btn-danger" id="rmvContact" title="Delete Contact" value="<%=contact._id%>" onclick="remove(this)"><i class="fa fa-remove"  title="Delete Contact"></i></button></td>
+            </tr>
+        <% })} else{ %>
+            <tr>
+            No Contacts yet!!
+            </tr>
+        <% } %>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script>
+    function remove(data){
+        var id = document.getElementById("rmvContact").value;
+        $.ajax({
+            url: "/api/contacts/"+id,
+            method: "DELETE"
+        }).done(()=>{
+            alert("Successfully Deleted");
+            location.reload(true);
+        })
+    }
+
+</script>
+</body>
+</html>

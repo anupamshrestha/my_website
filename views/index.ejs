@@ -276,7 +276,7 @@
             <h2 class="section-title text-center mb-5">Contact Form</h2>
           </div>
         </div>
-        <form class="form" method="post" id="contactForm">
+        <form class="form" method="POST" id="contactForm">
           <div class="row mb-4">
             <div class="form-group col-12">
               <input type="text" class="form-control" placeholder="Full name" name="full_name" required>
@@ -288,22 +288,22 @@
             </div>
           </div>
 
-           <div class="row mb-4">
+           <!-- <div class="row mb-4">
               <div class="form-group col-3">  
-                <p><strong><i>Languages you want to Enroll</i></strong></p><input type="checkbox" name="enroll1" value = "JavaScript"required>
-                <label for="enroll1"> JavaScript </label>
-                <input type="checkbox" name="enroll2" value="java" required>
-                <label for="enroll2"> Java </label>
-                <input type="checkbox" name="enroll3" value="PHP" required>
-                <label for="enroll3"> PHP </label>
+                <p><strong><i>Languages you want to Enroll</i></strong></p><input type="checkbox" name="enroll-JS" value = "JavaScript"required>
+                <label for="enroll-JS"> JavaScript </label>
+                <input type="checkbox" name="enroll-java" value="java" required>
+                <label for="enroll-java"> Java </label>
+                <input type="checkbox" name="enroll-PHP" value="PHP" required>
+                <label for="enroll-PHP"> PHP </label>
             </div>
           </div>
 
           <div class="row mb-4">
             <div class="form-group col-6">  
-              <p><strong><i>Choose your lecturer</i></strong></p><input type="radio" name="lecture" value="Mosh" required>
-              <label for="MOsh"> Mosh hamedani </label>
-              <input type="radio" name="lecture" value="Maximilian" required>
+              <p><strong><i>Choose your lecturer</i></strong></p><input type="radio" name="lecturer" value="Mosh_Hamedani" required>
+              <label for="Mosh"> Mosh hamedani </label>
+              <input type="radio" name="lecturer" value="Maximilian_Schwarzmüller" required>
               <label for="Maximilian"> Maximilian Schwarzmüller</label>
           </div>
         </div>
@@ -318,7 +318,7 @@
 
             </select>
         </div>
-      </div>
+      </div> -->
 
         
 
@@ -410,11 +410,12 @@
   <script src="/js/isotope.pkgd.min.js"></script>
   <script src="/js/sweetalert.min.js"></script>
   <script src="/js/main.js"></script>
-
   <script src="/js/request.js"></script>
+
   <script>
-    let request =  new Request();
-  </script>
+      let request = new Request(); 
+  </script> 
+ 
 
     
   </body>
