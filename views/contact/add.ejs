@@ -12,32 +12,31 @@
     
   </head>
   <div class="col-md-10 text-center"><h2><%=title%></h2></div>
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
+  <body>
     <section class="site-section" id="contact-section">
       <div class=" container form">
         
-        <form class="text-center" id="updateContact" method="post">
+        <form class="text-center" id="addContact" method="post">
           <div class="row mb-4">
             <div class="form-group col-4">
-              <input type="text" class="form-control" placeholder="Full name" name="full_name" value="<%= data.full_name %>" required>
+              <input type="text" class="form-control" placeholder="Full name" name="full_name" required>
             </div>
           </div>
           <div class="row mb-4">
             <div class="form-group col-4">
-              <input type="email" class="form-control" placeholder="Email address" name='email' value="<%= data.email %>" required>
-            </div>
-          </div>
-
-          <div class="row mb-4">
-            <div class="form-group col-4">
-              <input type="text" class="form-control" placeholder="Subject of the message" name="subject" value="<%= data.subject %>" required>
+              <input type="email" class="form-control" placeholder="Email address" name='email' required>
             </div>
           </div>
 
           <div class="row mb-4">
             <div class="form-group col-4">
-              <textarea cols="30" rows="5" class="form-control" name='message' placeholder="Type your message here.." value="<%=data.message%>" required></textarea>
+              <input type="text" class="form-control" placeholder="Subject of the message" name="subject" required>
+            </div>
+          </div>
+
+          <div class="row mb-4">
+            <div class="form-group col-4">
+              <textarea cols="30" rows="5" class="form-control" name='message' placeholder="Type your message here.." required></textarea>
             </div>
           </div>
 
@@ -45,7 +44,8 @@
 
           <div class="row">
             <div class="col-md-6">
-              <button type="submit" class="btn btn-primary"  onclick="update(this)">Update</button>
+              <button type="button" class="btn btn-danger"  onclick="window.location.replace('/contacts');">Go Back</button>
+              <button type="submit" class="btn btn-primary"  onclick="add(this)">Submit</button>
             </div>
           </div>
           
@@ -55,31 +55,32 @@
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/jquery-3.3.1.min.js"></script>
 
+
+
+
+ 
+ 
+
     
   </body>
-
   <script>
-     var id = "<%=data._id%>";
-     function update(data) {
+
+    function add(data) {
       var data = {};
-    $.each($('#updateContact').serializeArray(), function(i, field) {
+    $.each($('#addContact').serializeArray(), function(i, field) {
         data[field.name] = field.value;
       });
-      // console.log(data, id);
      
   $.ajax({
-          url: "/api/contacts/update" + id,
-          method: "PUT",
+          url: "/api/contacts/add",
+          method: "POST",
           data
-        }).done(()=> {
-          alert("Contact Updated Successfully");
-          location.reload(true);
+        }).done(function() {
+          alert("Contact Added successfully");
+          location.replace("/contacts");
         });
         event.preventDefault();
 
       }
   </script>
 </html>
-
- 
-

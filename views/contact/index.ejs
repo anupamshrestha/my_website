@@ -21,9 +21,8 @@
             <div class="col-md-10 text-center"><h2><%=title%></h2></div>    
 
             <div class=" col-md-2 text-right">
-              <button type="button" class="btn btn-secondary" title="Add Contact">
-                <a href="./contacts/add" target="_blank"> <i class="fa fa-plus"  title="Add Contact">&nbsp; Add </i></a>
-                 <!-- <i class="fa fa-plus"  title="Add Contact">&nbsp; Add </i> -->
+              <button type="button" class="btn btn-secondary" onclick="window.location.replace('/contacts/add')" title="Add Contact">
+                  <i class="fa fa-plus"></i>&nbsp; Add
               </button>
             </div>
           </div>
@@ -48,9 +47,10 @@
               <td><%=contact.email%></td>
               <td><%=contact.subject%></td>
               <td><%=contact.message%></td>
-              <td><button type="button" class="btn btn-primary" title="View Contact"><a href="./contacts/update" target="_blank"><i class="fa fa-eye"  title="View Contact"></i></a></button>
-              
-                <button type="button" class="btn btn-danger" id="rmvContact" title="Delete Contact" value="<%=contact._id%>" onclick="remove(this)"><i class="fa fa-remove"  title="Delete Contact"></i></button></td>
+              <td>
+                <button type="button" class="btn btn-primary" title="View Contact" onclick="window.location.replace('/contacts/<%=contact._id%>')"><i class="fa fa-eye"  title="Edit Contact"></i></button>
+              <button type="button" class="btn btn-danger" title="Delete Contact" value="<%=contact._id%>" onclick="remove(this)"><i class="fa fa-remove"  title="Delete Contact"></i></button>
+            </td>
             </tr>
         <% })} else{ %>
             <tr>
@@ -66,7 +66,7 @@
 <script src="/js/bootstrap.min.js"></script>
 <script>
     function remove(data){
-        var id = document.getElementById("rmvContact").value;
+      var id = $(data).val();
         $.ajax({
             url: "/api/contacts/"+id,
             method: "DELETE"
