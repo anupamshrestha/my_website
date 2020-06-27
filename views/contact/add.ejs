@@ -16,7 +16,7 @@
     <section class="site-section" id="contact-section">
       <div class=" container form">
         
-        <form class="text-center" id="addContact" method="post">
+        <form class="text-center" id="addContact" >
           <div class="row mb-4">
             <div class="form-group col-4">
               <input type="text" class="form-control" placeholder="Full name" name="full_name" required>
@@ -52,26 +52,16 @@
         </form>
 
    
-  <script src="/js/bootstrap.min.js"></script>
   <script src="/js/jquery-3.3.1.min.js"></script>
-
-
-
-
- 
- 
-
-    
+  <script src="/js/bootstrap.min.js"></script>
   </body>
   <script>
-
     function add(data) {
       var data = {};
     $.each($('#addContact').serializeArray(), function(i, field) {
         data[field.name] = field.value;
       });
-     
-  $.ajax({
+    $.ajax({
           url: "/api/contacts/add",
           method: "POST",
           data
@@ -79,8 +69,6 @@
           alert("Contact Added successfully");
           location.replace("/contacts");
         });
-        event.preventDefault();
-
       }
   </script>
 </html>

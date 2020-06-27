@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title><%= title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Arbutus+Slab|Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <div class="col-md-10 text-center"><h2><%=title%></h2></div>
+  <body>
+      <div class="text-center">
+        
+        <form  class="text-center" style="width: 30%; margin-top:2%;display: inline-block;">
+          <div class="row mb-4">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Full name" name="full_name" value="<%=data.full_name%>" required>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="form-group">
+              <input type="email" class="form-control" placeholder="Email address" name='email'  value="<%=data.email%>" required>
+            </div>
+          </div>
+
+          <div class="row mb-4">
+            <div class="form-group ">
+              <input type="text" class="form-control" placeholder="Subject of the message" name="subject"  value="<%=data.subject%>" required>
+            </div>
+          </div>
+
+          <div class="row mb-4">
+            <div class="form-group">
+              <textarea cols="30" rows="5" class="form-control" name='message' placeholder="Type your message here.." id="msgText" required></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 float-left">
+              <button type="button" class="btn btn-danger"  onclick="window.location.replace('/contacts');">Go Back</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+          
+        </form>
+</div>
+   
+  <script src="/js/jquery-3.3.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script>
+    var msgs = "<%=data.message%>";
+    document.getElementById("msgText").value = msgs;
+    var id = "<%=data._id%>";
+    
+    $("form").submit((event)=>{
+      event.preventDefault();
+      var data = {};
+    $.each($('form').serializeArray(), function(i, field) {
+        data[field.name] = field.value;
+      });
+    $.ajax({
+            url: "/api/contacts/"+id,
+            method: "PUT",
+            data
+          }).done(function() {
+            alert("Contact Updated successfully");
+            location.replace("/contacts");
+          });
+      });
+  </script>
+  </body>
+  
+</html>

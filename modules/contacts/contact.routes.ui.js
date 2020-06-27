@@ -9,12 +9,12 @@ router.get("/", async(req, res, next)=>{
 });
 
 router.get("/add", async(req, res, next)=>{
-    res.render("contact/addContact",{title: "Add Contact"});
+    res.render("contact/add",{title: "Add Contact"});
 });
 
-router.get("/update/:id", async(req, res, next)=>{
-    let updateList = await contactController.getById(req.params.id);
-    res.render("contact/update",{title: "Update List", updateList});
+router.get("/:id", async(req, res, next)=>{
+    let data = await contactController.getById(req.params.id);
+    res.render("contact/edit",{title: "Update List", data});
 });
 
 
