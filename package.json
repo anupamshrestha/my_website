@@ -19,6 +19,7 @@
     "nodemailer": "^6.4.8"
   },
   "engines": {
-    "node": "12.x"
+    "node": "12.x",
+    "mongodb": "4.0"
   }
 }
